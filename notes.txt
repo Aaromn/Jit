@@ -1,0 +1,49 @@
+The three main states that files may reside in on Git:
+
+    Modified means that you have changed the file but have not committed it to your database yet.
+
+    Staged means that you have marked a modified file in its current version to go into your next commit snapshot.
+
+    Committed means that the data is safely stored in your local database.
+
+
+Git init: readys a directory to become a git repositry where you can clone a repository, then work on it, then stage and commit changes to the main repository.
+
+Section 1.3: What is Git
+
+Conceptually, most other systems store information as a list of file-based changes. These other systems (CVS, Subversion, Perforce, and so on) think of the information they store as a set of files and the changes made to each file over time (this is commonly described as delta-based version control).
+
+Git doesn’t think of or store its data this way. Instead, Git thinks of its data more like a series of snapshots of a miniature filesystem. With Git, every time you commit, or save the state of your project, Git basically takes a picture of what all your files look like at that moment and stores a reference to that snapshot. To be efficient, if files have not changed, Git doesn’t store the file again, just a link to the previous identical file it has already stored. Git thinks about its data more like a stream of snapshots.
+
+Everything in Git is checksummed before it is stored and is then referred to by that checksum. The mechanism that Git uses for this checksumming is called a SHA-1 hash.
+
+* Step 1: Program a function that creates a SHA-1 hash of a file.
+
+Step 2: Create a function that goes through each file in a directory and creates a hashcode for each one of the files. Each file's information is stored in a struct. Then it returns an array of the struct.
+
+Step 3: Create a git init function. This will prepare the git repository. It will go through each file in the respository, create an SHA-1 hash of each one of the files and stores all of this information in a csv file as the first version.
+
+Create a .jit file that contains all the metadata and history of the repository are stored, including the configuration files, object database, references, and more.
+
+Step 4: Program a git stage function that prepares a file to be commited to the next snapshot. A simple array can be used for this.
+
+Step 5: Program the commit function. This will look through all of the files in the staged array and create a snapshot of the newly edited files alongside the non-edited files.
+
+Step 6: Program a function that looks through each file in a repository, creates a SHA-1 hash of each one of the files.
+
+I'm also going to have to think about how I am going to have to store each one of the files and it's many versions on my computer.
+
+1. Have the program check to see if any of the files have been changed and classify them as modified. Make a scan function that looks through all of the files in the folder collecting their hashs have it return values as an array. Use a comparision function to then compare the array to the different linked lists. Store snapshot information as a file that contains all files name and their dedicated hash number.
+
+
+1.2. Use a hash algorithm to check the hash of each of the files to see if it is the same file. Go off of the name to see if it is the same file.
+1.3. Figure out how to store the history of the snapshots.
+
+
+2. Be able to stage these modified files.
+
+3. Be able to commit these staged files to the new snapshot.
+
+How to compile using gcc with the openssl libary:
+gcc -o sha1sum_example sha1sum_example.c -lssl -lcrypto
+
